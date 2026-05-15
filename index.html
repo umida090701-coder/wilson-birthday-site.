@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Wilson!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#ffdde1;
+  --bg2:#ee9ca7;
+  --accent:#ff6b81;
+  --muted:#6b6b6b;
+  --glass:rgba(255,255,255,0.75);
+  --card:rgba(255,255,255,0.85);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Inter',Arial,sans-serif;
+  background: url('wilsonpic1 (28).jpg') center/cover no-repeat;
+  min-height:100vh;
+  color:#222;
+  overflow-x:hidden;
+  position: relative;
+}
+body::before {
+  content:'';
+  position:absolute; inset:0;
+  background: rgba(255, 230, 250,0.35);
+  backdrop-filter: blur(8px);
+  z-index:0;
+}
+
+/* Nav */
+header{
+  position:sticky; top:12px; z-index:50; display:flex; gap:12px; justify-content:center; padding:12px 8px;
+}
+.nav-btn{
+  background:var(--glass); padding:8px 14px; border-radius:999px; border:1px solid rgba(0,0,0,0.06);
+  cursor:pointer; font-weight:600; color:#333;
+  transition: transform .15s ease, box-shadow .15s;
+}
+.nav-btn:hover{ transform: translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+
+main{ padding:18px; display:flex; gap:20px; justify-content:center; flex-direction:column; align-items:center; position:relative; z-index:1; }
+
+/* Hero */
+.hero{
+  max-width:880px; width:94%; background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.80));
+  border-radius:16px; padding:24px; box-shadow:0 8px 30px rgba(0,0,0,0.09);
+  text-align:center; position:relative; overflow:hidden;
+}
+h1{margin:6px 0 10px; font-size:2.2rem; cursor:pointer; letter-spacing:0.6px;}
+.subtitle{ color:var(--muted); margin:0 0 20px; }
+
+.messages{ display:flex; flex-direction:column; gap:10px; align-items:center; }
+.message{
+  width:100%; max-width:680px; padding:12px 16px; background:rgba(255,255,255,0.95);
+  border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.04); opacity:0; transform:translateY(8px);
+  transition: all .45s cubic-bezier(.2,.9,.3,1);
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.message.visible{ opacity:1; transform:translateY(0); }
+.message .left{ text-align:left; }
+.message .emoji{ font-size:1.6rem; margin-left:10px; cursor:pointer; }
+
+.heart{
+  font-size:3rem; margin:16px auto; display:inline-block; animation: bounce 1s infinite alternate; cursor:pointer;
+  user-select:none;
+}
+@keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-10px)} }
+
+/* music / players */
+.players{ display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:8px; }
+.player-frame{ border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.06); overflow:hidden; }
+
+/* media section */
+.media-area{ width:94%; max-width:900px; background:var(--card); padding:18px; border-radius:14px; margin-top:18px; }
+.media-area h2{ margin:6px 0 12px; }
+.upload-row{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center; margin-bottom:12px; }
+input[type=file]{ padding:8px; background:transparent; }
+.gallery{ display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.gallery img{ width:180px; border-radius:12px; cursor:pointer; transition: transform .2s; }
+.gallery img:hover{ transform:scale(1.03) }
+.gallery video{ width:240px; border-radius:12px; }
+
+/* carousel controls */
+.carousel{ display:flex; align-items:center; gap:10px; justify-content:center; margin-top:10px; }
+.carousel button{ background:var(--glass); border-radius:8px; padding:8px 10px; cursor:pointer; }
+
+/* modal */
+.modal{
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:999;
+  background:rgba(0,0,0,0.6);
+}
+.modal.show{ display:flex; }
+.modal .card{ background:white; padding:18px; border-radius:12px; max-width:92%; max-height:92%; overflow:auto; }
+
+/* secret area */
+.secret-hidden{ display:none; }
+
+footer{ margin-top:28px; color:var(--muted); text-align:center; font-size:0.95rem; padding-bottom:28px; }
+
+/* cursor trail */
+.trail { position:fixed; width:12px; height:12px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); z-index:9999; mix-blend-mode:screen; }
+
+/* responsiveness */
+@media (max-width:600px){
+  h1{ font-size:1.6rem; }
+  .gallery img{ width:120px }
+  .gallery video{ width:160px }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="nav-btn" data-section="home">Home</button>
+  <button class="nav-btn" data-section="photos">Photos</button>
+  <button class="nav-btn" data-section="videos">Videos</button>
+  <button class="nav-btn" data-section="secret">Secret</button>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="section" style="display:block;">
+    <div class="hero">
+      <h1>Happy Birthday, Wilson Malades1! 🌸</h1>
+      <p class="subtitle">A little digital letter — made with care ❤️ Click each message to reveal a surprise.</p>
+<img src="wilsonpic1 (30).jpeg" alt="Wilson" style="max-width:220px; border-radius:16px; margin:12px 0; box-shadow:0 6px 18px rgba(0,0,0,0.15);">
+      <div class="messages" id="messages">
+        <div class="message" data-idx="0"><div class="left">Grateful for every laugh and moment we shared this year.</div><div class="emoji">😊</div></div>
+        <div class="message" data-idx="1"><div class="left">Your smile makes the world brighter ✨</div><div class="emoji">🌞</div></div>
+        <div class="message" data-idx="2"><div class="left">I hope your year brings peace, joy, and sweet adventures.</div><div class="emoji">🎈</div></div>
+        <div class="message" data-idx="3"><div class="left">Keep shining, Wilson, you deserve all the happiness.</div><div class="emoji">🌸</div></div>
+        <div class="message" data-idx="4"><div class="left">Ribs is playing — starting at the part I love (3:15).</div><div class="emoji">🎶</div></div>
+      </div>
+      <div class="heart" id="heart">😃 Click me!</div>
+      <div class="players">
+        <div class="player-frame" style="width:360px;height:72px;">
+          <iframe width="360" height="72" src="https://www.youtube.com/embed/b7pE8AG1jjE?start=195&autoplay=0&loop=1&playlist=b7pE8AG1jjE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="player-frame" style="width:360px;height:80px;">
+          <iframe src="https://open.spotify.com/embed/track/6dOtVTDdiauQNBQEDOtlAB" width="360" height="80" frameborder="0" allow="encrypted-media"></iframe>
+        </div>
+        <div class="player-frame" style="width:360px;height:80px;">
+          <iframe src="https://open.spotify.com/embed/track/2MvvoeRt8NcOXWESkxWn3g" width="360" height="80" frameborder="0" allow="encrypted-media"></iframe>
+        </div>
+        <div class="player-frame" style="width:360px;height:80px;">
+          <iframe src="https://open.spotify.com/embed/track/3AaaRBgxa3BXAwhUUsCKNf?si=9e19623cc9734d3a" width="360" height="80" frameborder="0" allow="encrypted-media"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section id="photos" class="section" style="display:none;">
+    <div class="media-area">
+      <h2>Photo Gallery 📷</h2>
+      <div class="gallery" id="photoGallery">
+        <!-- 29 photos -->
+        <img src="wilsonpic1 (1).jpg" alt="">
+        <img src="wilsonpic1 (2).jpg" alt="">
+        <img src="wilsonpic1 (3).jpg" alt="">
+        <img src="wilsonpic1 (4).jpg" alt="">
+        <img src="wilsonpic1 (5).jpg" alt="">
+        <img src="wilsonpic1 (6).jpg" alt="">
+        <img src="wilsonpic1 (7).jpg" alt="">
+        <img src="wilsonpic1 (8).jpg" alt="">
+        <img src="wilsonpic1 (9).jpg" alt="">
+        <img src="wilsonpic1 (10).jpg" alt="">
+        <img src="wilsonpic1 (11).jpg" alt="">
+        <img src="wilsonpic1 (12).jpg" alt="">
+        <img src="wilsonpic1 (13).jpg" alt="">
+        <img src="wilsonpic1 (14).jpg" alt="">
+        <img src="wilsonpic1 (15).jpg" alt="">
+        <img src="wilsonpic1 (16).jpg" alt="">
+        <img src="wilsonpic1 (17).jpg" alt="">
+        <img src="wilsonpic1 (18).jpg" alt="">
+        <img src="wilsonpic1 (19).jpg" alt="">
+        <img src="wilsonpic1 (20).jpg" alt="">
+        <img src="wilsonpic1 (21).jpg" alt="">
+        <img src="wilsonpic1 (22).jpg" alt="">
+        <img src="wilsonpic1 (23).jpg" alt="">
+        <img src="wilsonpic1 (24).jpg" alt="">
+        <img src="wilsonpic1 (25).jpg" alt="">
+        <img src="wilsonpic1 (26).jpg" alt="">
+        <img src="wilsonpic1 (27).jpg" alt="">
+        <img src="wilsonpic1 (28).jpg" alt="">
+        <img src="wilsonpic1 (29).jpg" alt="">
+        <img src="wilsonpic1 (30).jpeg" alt="">
+<img src="wilsonpic1 (31).jpeg" alt="">
+<img src="wilsonpic1 (32).jpeg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" class="section" style="display:none;">
+    <div class="media-area">
+      <h2>Video Gallery 🎥</h2>
+      <div class="gallery" id="videoGallery">
+        <video controls src="wilson video 1.mp4"></video>
+        <video controls src="wilson video 2.mp4"></video>
+        <video controls src="wilson video 3.mp4"></video>
+<video controls src="wilson video 4.mp4"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECRET -->
+  <section id="secret" class="section" style="display:none;">
+    <div class="media-area">
+      <h2>Secret Page 🔒🤫</h2>
+      <p class="subtitle">Enter the secret password to see a special message.</p>
+      <div style="display:flex; gap:8px; justify-content:center; align-items:center; margin-bottom:12px;">
+        <input id="secretInput" type="password" placeholder="password" style="padding:8px 10px; border-radius:8px;">
+        <button class="nav-btn" id="secretBtn">Open</button>
+      </div>
+      <div id="secretContent" class="secret-hidden">
+        <h3>For Wilson — a private note 💌</h3>
+        <p style="max-width:720px; margin:6px auto;"> You are Intelligent, cute, kind, funny, thoughtful, creative, charming, honest, supportive, warm-hearted, caring, confident, sweet, loyal, energetic, inspiring, gentle, clever, fun-loving, talented.You are loved, you are bright, and today we celebrate you. Thank you for being you. — (forgive me and my clumsiness)</p>
+        <img src="wilsonpic1 (4).jpg" style="max-width:320px;" alt="secret image">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Hope this little digital letter brings a smile to your day 😊</footer>
+
+<script>
+// Navigation
+document.querySelectorAll('.nav-btn[data-section]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const section = btn.getAttribute('data-section');
+    document.querySelectorAll('.section').forEach(s=>s.style.display='none');
+    document.getElementById(section).style.display='block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+// Messages reveal
+document.querySelectorAll('.message').forEach(m=>{
+  m.addEventListener('click', ()=> m.classList.add('visible'));
+  const emo = m.querySelector('.emoji');
+  emo.addEventListener('click', e=>{
+    e.stopPropagation();
+    emo.textContent = emo.textContent==='❤️'?'✨':'❤️';
+  });
+});
+
+// Heart click
+document.getElementById('heart').addEventListener('click', ()=> alert('Virtual hug to my chort 🤗'));
+
+// Secret password
+const SECRET_PASSWORD="1901";
+document.getElementById('secretBtn').addEventListener('click', ()=>{
+  const val = document.getElementById('secretInput').value.trim();
+  if(val===SECRET_PASSWORD) document.getElementById('secretContent').classList.remove('secret-hidden');
+  else alert('Wrong password — try again 💌');
+});
+</script>
+<script>
+  // Reveal messages one by one when clicking the subtitle
+  document.querySelector('.subtitle').addEventListener('click', () => {
+    const messages = document.querySelectorAll('.message');
+    let delay = 0;
+    messages.forEach((m, idx) => {
+      setTimeout(() => {
+        m.classList.add('visible');
+        burstConfetti(4); // small confetti per message
+      }, delay);
+      delay += 300; // 300ms between each message
+    });
+  });
+</script>
+
+<script>
+  // Emoji explosion on page load
+  window.addEventListener('load', () => {
+    const emojis = ['🥳','🤩','🙌','💐','🥀','💥','✨','🔟','➕','🎉'];
+    for(let i=0; i<20; i++){ // number of emojis
+      const el = document.createElement('div');
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.position = 'fixed';
+      el.style.left = Math.random() * window.innerWidth + 'px';
+      el.style.top = Math.random() * window.innerHeight + 'px';
+      el.style.fontSize = (20 + Math.random()*24) + 'px';
+      el.style.opacity = 1;
+      el.style.transition = 'transform 2s ease-out, opacity 2s ease-out';
+      document.body.appendChild(el);
+
+      setTimeout(() => {
+        const xMove = (Math.random()-0.5)*400; // horizontal spread
+        const yMove = - (200 + Math.random()*300); // vertical
+        const rotate = (Math.random()-0.5)*720; 
+        el.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${rotate}deg) scale(1.2)`;
+        el.style.opacity = 0;
+      }, 50);
+
+      setTimeout(()=> el.remove(), 2100);
+    }
+  });
+</script>
+
+<script>
+  // Continuous emoji explosion
+  const emojis = ['🥳','🤩','🙌','💐','🥀','💥','✨','🔟','➕','🎉'];
+
+  function spawnEmoji() {
+    const el = document.createElement('div');
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.position = 'fixed';
+    el.style.left = Math.random() * window.innerWidth + 'px';
+    el.style.top = window.innerHeight + 'px'; // start from bottom
+    el.style.fontSize = (20 + Math.random()*24) + 'px';
+    el.style.opacity = 1;
+    el.style.transition = 'transform 2.5s linear, opacity 2.5s linear';
+    document.body.appendChild(el);
+
+    const xMove = (Math.random()-0.5)*200; // sideways drift
+    const yMove = - (200 + Math.random()*400); // vertical rise
+    const rotate = (Math.random()-0.5)*720;
+
+    setTimeout(() => {
+      el.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${rotate}deg) scale(1.2)`;
+      el.style.opacity = 0;
+    }, 50);
+
+    setTimeout(() => el.remove(), 2600); // remove after animation
+  }
+
+  // spawn emojis continuously
+  setInterval(() => {
+    spawnEmoji();
+  }, 300); // every 0.3s
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
